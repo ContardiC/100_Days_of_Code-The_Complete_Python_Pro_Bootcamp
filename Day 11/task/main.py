@@ -85,9 +85,23 @@ def deal_card():
     card = random.choice(cards)
     return card
 
+def calculate_score(cards):
+    """Take a list of cards and return the score calculated from the cards"""
+    if sum(cards)==21 and len(cards) ==2:
+        return 0 # per indicare che è black jack
+    if 11 in cards and sum(cards) > 21:
+        cards.remove(11)
+        cards.append(1)
+    return sum(cards)
+
+
+
 user_cards = []
 computer_cards = []
-# quando non mi serve una variabile per il loop posso usare underscore _
+# quando non mi serve una variabile per il loop posse usare underscore _
 for _ in range(2):
     user_cards.append(deal_card())
     computer_cards.append(deal_card())
+
+user_score = calculate_score(user_cards)
+computer_score = calculate_score(computer_cards)
